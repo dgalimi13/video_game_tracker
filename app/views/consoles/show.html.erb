@@ -1,1 +1,12 @@
 <h1><%= @console.name %><h1>
+
+<ol> 
+<% @console.games.each do |game| %> 
+    <li><%= game.url %></li>
+    <% end %>
+    </ol>
+
+<form action="/consoles/<%= @console.id %>/games" method="POST"> 
+<input type="text" name="url" />
+<input type="submit" value="Add Game">
+</form>
