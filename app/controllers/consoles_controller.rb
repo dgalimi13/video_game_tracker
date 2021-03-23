@@ -12,6 +12,11 @@ class ConsolesController < ApplicationController
         erb :"consoles/new.html"
     end
 
+    get '/consoles/:id' do 
+        @console = current_user.consoles.find(params[:id])
+        erb :"consoles/show.html"
+    end 
+
     post '/consoles' do 
         @console = Console.new
         @console.name = params[:name]
