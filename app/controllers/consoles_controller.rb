@@ -29,11 +29,11 @@ class ConsolesController < ApplicationController
         end
     end 
 
-        post 'console/:id/games' do 
+        post '/consoles/:id/games' do 
             @console = current_user.consoles.find(params[:id])
             @game = @console.games.build(:url => params[:url])
              if @game.save
-                redirect "/consoles/#{@playlist.id}"
+                redirect "/consoles/#{@console.id}"
              else
                 erb :"consoles/show.html"
              end
