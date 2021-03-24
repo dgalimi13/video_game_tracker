@@ -4,7 +4,7 @@ class ApplicationController < Sinatra::Base
 
   configure do
     enable :sessions
-    set :session_secret, "mixshareapp-1234"
+    set :session_secret, "video_game_tracker-1234"
     
     set :public_folder, 'public'
     set :views, 'app/views'

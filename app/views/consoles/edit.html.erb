@@ -1,0 +1,15 @@
+<h1>Edit <%= @console.name %></h1>
+
+<form action="/consoles/<%=@console.id %>" method="POST">
+<input type="hidden" name="_method" value="patch">
+  <label> Console Name </label>
+  <input type="text" name="name" value="<%=@console.name %>"> </br>
+
+  <input type="submit" value="Update">
+</form>
+
+<form method="post" action="/consoles/<%= @console.id %>">
+  <input type="hidden" name="_method" value="delete" />
+  <label> Delete Console </label>
+  <input type="submit" />
+</form>

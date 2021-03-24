@@ -22,6 +22,7 @@
         <nav>
           <% if logged_in? %>
           Logged in as: <%= current_user.email %> |
+          <a href="/consoles">Your Consoles</a>  |
           <a href="/consoles/new">New Console</a> |
           <a href="/logout">Logout</a>
           <% else %>

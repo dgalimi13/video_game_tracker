@@ -10,12 +10,31 @@ class ConsolesController < ApplicationController
 
     get '/consoles/new' do 
         erb :"consoles/new.html"
+    end  
+
+    get "/consoles/:id/edit" do
+        @console = current_user.consoles.find(params[:id])
+        erb :"consoles/edit.html"
     end
 
+    post '/consoles/:id' do 
+        @console = current_user.consoles.find(params[:id])
+        erb :"consoles/show.html"
+    end 
+
+    
     get '/consoles/:id' do 
         @console = current_user.consoles.find(params[:id])
         erb :"consoles/show.html"
     end 
+
+    
+
+    patch "/consoles/:id" do
+        @console = current_user.consoles.find(params[:id])
+        @console.update(params[:console])
+        redirect to "/console/#{ @console.id }"
+      end
 
     post '/consoles' do 
         @console = Console.new
@@ -38,5 +57,12 @@ class ConsolesController < ApplicationController
                 erb :"consoles/show.html"
              end
         end
+
+        delete "/consoles/:id" do
+            Console.destroy(params[:id])
+            redirect to "/consoles"
+          end
+
+        
 
 end
