@@ -33,7 +33,7 @@ class ConsolesController < ApplicationController
     patch "/consoles/:id" do
         @console = current_user.consoles.find(params[:id])
         @console.update(params[:console])
-        redirect to "/console/#{ @console.id }"
+        redirect to "/consoles/#{ @console.id }"
       end
 
     post '/consoles' do 
@@ -61,6 +61,13 @@ class ConsolesController < ApplicationController
         delete "/consoles/:id" do
             Console.destroy(params[:id])
             redirect to "/consoles"
+          end
+
+          delete "/consoles/:id/games" do
+            @console = current_user.consoles.find(params[:id])
+            @game = @console.games.find(url: params[:url])
+            @game.destroy
+            redirect to "/consoles/#{@console.id}"
           end
 
         

@@ -3,7 +3,7 @@
 <form action="/consoles/<%=@console.id %>" method="POST">
 <input type="hidden" name="_method" value="patch">
   <label> Console Name </label>
-  <input type="text" name="name" value="<%=@console.name %>"> </br>
+  <input type="text" name="console[name]" value="<%=@console.name %>"> </br>
 
   <input type="submit" value="Update">
 </form>

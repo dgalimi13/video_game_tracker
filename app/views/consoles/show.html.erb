@@ -6,6 +6,12 @@
 <ol> 
 <% @console.games.each do |game| %> 
     <li><%= game.url %></li>
+
+    <form action="/games/<%= game.id %>" method="POST"> 
+    <input type="hidden" name="_method" value="delete" />
+        <input type="submit" value="Delete Game">
+    </form> 
+
     <% end %>
     </ol>
 
@@ -13,4 +19,6 @@
     <input type="text" name="url" />
     <input type="submit" value="Add Game">
 </form> 
+
+
 
