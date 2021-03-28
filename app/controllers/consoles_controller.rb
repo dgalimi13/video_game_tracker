@@ -28,8 +28,6 @@ class ConsolesController < ApplicationController
         erb :"consoles/show.html"
     end 
 
-    
-
     patch "/consoles/:id" do
         @console = current_user.consoles.find(params[:id])
         @console.update(params[:console])
@@ -37,11 +35,11 @@ class ConsolesController < ApplicationController
       end
 
     post '/consoles' do 
+        if params[:name] != ""
         @console = Console.new
         @console.name = params[:name]
         @console.user = current_user
-        
-        if @console.save 
+        @console.save 
             redirect '/consoles'
         else 
             erb :'consoles/new.html'
@@ -49,12 +47,14 @@ class ConsolesController < ApplicationController
     end 
 
         post '/consoles/:id/games' do 
+            
             @console = current_user.consoles.find(params[:id])
+            if params[:url] != ""
             @game = @console.games.build(:url => params[:url])
-             if @game.save
+            @game.save
                 redirect "/consoles/#{@console.id}"
              else
-                erb :"consoles/show.html"
+                redirect to "/consoles/#{@console.id}"
              end
         end
 
